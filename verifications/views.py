@@ -1,6 +1,7 @@
 from rest_framework import status
 from rest_framework.response import Response
-from rest_framework.views import APIView
+from rest_framework.generics import GenericAPIView
+from drf_spectacular.utils import extend_schema
 
 from .models import PassportVerification
 from .serializers import (
@@ -9,10 +10,14 @@ from .serializers import (
 )
 from .services.interswitch import verify_passport
 
+@extend_schema(
+    tags=["KYC Passport Verification"],
+    request=PassportVerificationCreateSerializer,
+    responses=PassportVerificationDetailSerializer)
+class PassportVerificationCreateView(GenericAPIView):
 
-class PassportVerificationCreateView(APIView):
     def post(self, request):
-        serializer = PassportVerificationCreateSerializer(data=request.data)
+        serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
         verification = serializer.save(status="processing")
@@ -33,8 +38,10 @@ class PassportVerificationCreateView(APIView):
             status=status.HTTP_201_CREATED
         )
 
+@extend_schema(tags=["KYC Passport Verification"])
+class PassportRetryVerificationCreateView(GenericAPIView):
+    serializer_class = PassportVerificationDetailSerializer
 
-class PassportRetryVerificationCreateView(APIView):
     def post(self, request, pk):
         verification = PassportVerification.objects.get(pk=pk)
 
@@ -64,10 +71,13 @@ class PassportRetryVerificationCreateView(APIView):
             status=status.HTTP_200_OK
         )
     
+@extend_schema(tags=["KYC Passport Verification"])
+class PassportVerificationDetailView(GenericAPIView):
+    serializer_class = PassportVerificationDetailSerializer
+    queryset = PassportVerification.objects.all()
 
-class PassportVerificationDetailView(APIView):
     def get(self, request, pk):
-        verification = PassportVerification.objects.get(pk=pk)
+        verification = self.get_object_or_404(self.queryset, pk=pk)
         return Response(
-            PassportVerificationDetailSerializer(verification).data
+            self.get_serializer(verification).data
         )

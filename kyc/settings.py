@@ -62,6 +62,20 @@ INSTALLED_APPS = [
 
 ]
 
+# Django REST Framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 20,
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -176,16 +190,6 @@ SPECTACULAR_SETTINGS = {
      'ENUM_NAME_OVERRIDES': {
          
     },
-
-    "COMPONENTS": {
-        "securitySchemes": {
-            "jwtAuth": {
-                "type": "http",
-                "scheme": "bearer",
-                "bearerFormat": "JWT",
-            }
-        }
-    },
 }
 
 # Logs 
@@ -226,11 +230,6 @@ LOGGING = {
         'verifications': {
             'handlers': ['console', 'file'],
             'level': 'INFO',
-            'propagate': False,
-        },
-        'upload': {
-            'handlers': ['console', 'error_file'],
-            'level': 'ERROR',
             'propagate': False,
         },
         # Add other app loggers here
