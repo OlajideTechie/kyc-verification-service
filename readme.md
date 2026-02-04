@@ -58,7 +58,6 @@ This project was inspired by a stalled KYC onboarding experience, where a passpo
 |------|---------|-------------|
 | POST | `/api/verifications/` | Submit passport for verification |
 | GET | `/api/verifications/{id}/` | Get verification status |
-| POST | `/api/verifications/{id}/retry/` | Retry failed verification |
 
 ---
 

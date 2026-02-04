@@ -20,7 +20,11 @@ class PassportVerification(models.Model):
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
+
     passport_number = models.CharField(max_length=20)
+    last_name = models.CharField(max_length=100)
+    date_of_birth = models.DateField()
+
     status = models.CharField(
         max_length=20,
         choices=STATUS_CHOICES,
@@ -29,6 +33,13 @@ class PassportVerification(models.Model):
     provider_reference = models.CharField(
         max_length=100, blank=True, null=True
     )
+
+    provider_response = models.JSONField(
+        null=True,
+        blank=True,
+        help_text="Raw response from Interswitch for audit/debugging",
+    )
+
     failure_reason = models.TextField(blank=True, null=True)
 
     created_at = models.DateTimeField(auto_now_add=True)
