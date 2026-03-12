@@ -8,6 +8,7 @@ This project was inspired by a stalled KYC onboarding experience, where a passpo
 
 ## 📜 License References
 
+![Interswitch](https://img.shields.io/badge/Interswitch-Passport%20Verification-green?style=for-the-badge&logo=shield)](https://www.interswitchgroup.com)
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Django](https://img.shields.io/badge/Django-5.0-darkgreen)
 ![DRF](https://img.shields.io/badge/DRF-REST--Framework-green)
@@ -56,8 +57,35 @@ This project was inspired by a stalled KYC onboarding experience, where a passpo
 
 | Method | Endpoint | Description |
 |------|---------|-------------|
-| POST | `/api/verifications/` | Submit passport for verification |
-| GET | `/api/verifications/{id}/` | Get verification status |
+| POST | `/api/start-verifications` | Submit passport for verification |
+| GET | `/api/verifications/{verification_id}` | Get verification status |
+
+
+### Sample API Response
+
+```json
+{
+  "status": true,
+  "verification_id": "9980983d-c162-4279-bf26-33d6ddceb7f0",
+  "result": {
+    "success": true,
+    "code": "200",
+    "message": "request processed successfully",
+    "data": {
+      "first_name": "jane",
+      "last_name": "doe",
+      "middle_name": "Osas",
+      "dob": "12/02/1980",
+      "mobile": "08012345678",
+      "passport_number": "B0****000",
+      "gender": "Male",
+      "issued_at": "ALAUSA, LAGOS",
+      "issued_date": "01/06/2020",
+      "expiry_date": "01/06/2026",
+      "document_type": "Standard Passport"
+    }
+  }
+}
 
 ---
 
@@ -67,10 +95,10 @@ This project was inspired by a stalled KYC onboarding experience, where a passpo
 # Set up virtual environment
 python -m venv venv
 
-# Activate virtual environment
+# Activate virtual environment (for mac/linux users)
 source venv/bin/activate  
 
-# or 
+# Activate virtual environment (for windows users) 
 env\Scripts\activate on Windows
 
 # Install dependencies

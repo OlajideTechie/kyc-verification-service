@@ -179,7 +179,3 @@ docker_guide.md
 docker_architecture.md
 contributing.md
 makefile
-# ============================================================================
-# TESTING
-pytest.ini
-monnify_merchants_model_training.py
