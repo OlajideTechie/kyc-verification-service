@@ -216,7 +216,7 @@ LOGGING = {
         },
         'file': {
             'class': 'logging.FileHandler',
-            'filename': os.path.join(LOG_DIR, 'swiftcart.log'),
+            'filename': os.path.join(LOG_DIR, 'kyc.log'),
             'formatter': 'verbose',
             'encoding': 'utf-8',
         },
