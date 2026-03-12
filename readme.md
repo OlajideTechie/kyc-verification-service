@@ -1,6 +1,6 @@
 # KYC Passport Verification Service
 
-A minimal backend service that simulates a real-world KYC passport verification flow using a third-party verification provider.
+A minimal backend service that simulates a real-world KYC passport verification flow, this service integrates with **Interswitch Passport Verification API** to validate customer identities securely.
 
 This project was inspired by a stalled KYC onboarding experience, where a passport verification remained “under review” for days with no feedback. The goal is to explore how better system design, state management, and feedback loops can improve trust and user experience during identity verification.
 
@@ -8,7 +8,7 @@ This project was inspired by a stalled KYC onboarding experience, where a passpo
 
 ## 📜 License References
 
-![Interswitch](https://img.shields.io/badge/Interswitch-Passport%20Verification-green?style=for-the-badge&logo=shield)](https://www.interswitchgroup.com)
+![Interswitch](https://img.shields.io/badge/Interswitch-Passport%20Verification-green?style=for-the-badge&logo=shield)
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
 ![Django](https://img.shields.io/badge/Django-5.0-darkgreen)
 ![DRF](https://img.shields.io/badge/DRF-REST--Framework-green)
@@ -86,6 +86,7 @@ This project was inspired by a stalled KYC onboarding experience, where a passpo
     }
   }
 }
+```
 
 ---
 
